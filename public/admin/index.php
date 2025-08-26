@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../api/db.php';
+require_once(__DIR__ . '/../api/db.php');
 $db = getDB();
 
 // LOGIN
@@ -241,4 +241,5 @@ td:last-child a:hover { background: #82eefd; }
     </script>
 </body>
 </html>
+
 
