@@ -22,10 +22,10 @@ $stmt->execute([$id]);
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
 if ($row) {
     if ($row['portada'] && file_exists("../" . $row['portada'])) {
-        @unlink("../" . $row['portada']);
+        @unlink("/" . $row['portada']);
     }
-    if ($row['video'] && file_exists("../" . $row['video'])) {
-        @unlink("../" . $row['video']);
+    if ($row['video'] && file_exists("/" . $row['video'])) {
+        @unlink("/" . $row['video']);
     }
 }
 
@@ -33,3 +33,4 @@ $stmt = $db->prepare("DELETE FROM dias WHERE id = ?");
 $res = $stmt->execute([$id]);
 
 echo json_encode(['ok' => $res]);
+
