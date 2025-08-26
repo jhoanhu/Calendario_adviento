@@ -1,4 +1,4 @@
-const apiURL = "../api/obtener-dias.php";
+const apiURL = "/api/obtener-dias.php";
 const diasGrid = document.getElementById("dias-grid");
 const modal = document.getElementById("modal");
 const modalContent = document.getElementById("modal-content");
@@ -35,7 +35,7 @@ function renderDias() {
       // Portada
       if (dia.portada) {
         const img = document.createElement("img");
-        img.src = "../" + dia.portada.replace(/^\/+/, "");
+        img.src = "/" + dia.portada.replace(/^\/+/, "");
         img.alt = "Portada";
         img.className = "card-bg";
         card.appendChild(img);
@@ -89,7 +89,7 @@ function mostrarModalDia(dia) {
     <div class="modal-fecha">${dia.fecha}</div>
     ${
       dia.portada
-        ? `<img src="../${dia.portada.replace(/^\/+/, "")}" alt="Portada">`
+        ? `<img src="/${dia.portada.replace(/^\/+/, "")}" alt="Portada">`
         : ""
     }
     ${
@@ -130,7 +130,7 @@ function mostrarModalDia(dia) {
     e.preventDefault();
     const comentario = document.getElementById("comentario").value.trim();
     if (!comentario) return;
-    fetch("../api/guardar-comentario.php", {
+    fetch("/api/guardar-comentario.php", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -148,7 +148,7 @@ function mostrarModalDia(dia) {
 }
 
 function cargarRespuestas(idDia) {
-  fetch(`../api/obtener-comentarios.php?id_dia=${idDia}`)
+  fetch(`/api/obtener-comentarios.php?id_dia=${idDia}`)
     .then((r) => r.json())
     .then((list) => {
       const div = document.getElementById("respuestas-list");
@@ -167,3 +167,4 @@ function cargarRespuestas(idDia) {
       div.innerHTML += "</ul>";
     });
 }
+
