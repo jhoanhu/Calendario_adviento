@@ -4,7 +4,8 @@ if (!isset($_SESSION['admin'])) {
     header('Location: index.php');
     exit;
 }
-require_once '/api/db.php';
+require_once(__DIR__ . '/../api/db.php');
+
 $db = getDB();
 
 $modo = "Nuevo";
@@ -165,4 +166,5 @@ input[type="submit"]:hover {
     </div>
 </body>
 </html>
+
 
