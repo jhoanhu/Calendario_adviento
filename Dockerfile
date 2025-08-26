@@ -13,6 +13,11 @@ COPY public/ /var/www/html/
 RUN chown -R www-data:www-data /var/www/html/uploads
 RUN chmod -R 755 /var/www/html/uploads
 
+# Da permisos de escritura a la base de datos SQLite
+RUN if [ -d /var/www/html/db ]; then chmod -R 777 /var/www/html/db; fi
+# O si ya existe el archivo (por ejemplo: database.sqlite), puedes hacer:
+# RUN chmod 666 /var/www/html/db/database.sqlite
+
 EXPOSE 8080
 
 CMD ["apache2-foreground"]
