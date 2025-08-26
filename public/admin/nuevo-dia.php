@@ -4,7 +4,7 @@ if (!isset($_SESSION['admin'])) {
     header('Location: index.php');
     exit;
 }
-require_once '../api/db.php';
+require_once '/api/db.php';
 $db = getDB();
 
 $modo = "Nuevo";
@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_FILES['video']) && $_FILES['video']['error'] === UPLOAD_ERR_OK) {
         $ext = pathinfo($_FILES['video']['name'], PATHINFO_EXTENSION);
         $fileName = 'video_' . $fecha . '_' . uniqid() . '.' . $ext;
-        $destino = '../uploads/videos/' . $fileName;
+        $destino = '/uploads/videos/' . $fileName;
         if (move_uploaded_file($_FILES['video']['tmp_name'], $destino)) {
             $videoRuta = 'uploads/videos/' . $fileName;
         }
@@ -144,7 +144,7 @@ input[type="submit"]:hover {
             <?php if (!empty($dia['portada'])): ?>
                 <div style="margin-top:10px;">
                     <b>Actual:</b><br>
-                    <img src="../<?=htmlspecialchars($dia['portada'])?>" alt="Portada" style="max-width:140px;max-height:90px;border-radius:12px;">
+                    <img src="/<?=htmlspecialchars($dia['portada'])?>" alt="Portada" style="max-width:140px;max-height:90px;border-radius:12px;">
                 </div>
             <?php endif; ?>
             
@@ -156,7 +156,7 @@ input[type="submit"]:hover {
             <?php if (!empty($dia['video'])): ?>
                 <div style="margin-top:10px;">
                     <b>Actual:</b><br>
-                    <video src="../<?=htmlspecialchars($dia['video'])?>" controls style="max-width:140px;max-height:90px;border-radius:12px;"></video>
+                    <video src="/<?=htmlspecialchars($dia['video'])?>" controls style="max-width:140px;max-height:90px;border-radius:12px;"></video>
                 </div>
             <?php endif; ?>
             
@@ -165,3 +165,4 @@ input[type="submit"]:hover {
     </div>
 </body>
 </html>
+
